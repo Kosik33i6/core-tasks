@@ -1,0 +1,17 @@
+{
+  "name": "task-core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start-frontend": "cd frontend && npm run dev",
+    "start-backend": "cd backend && npm run dev",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
