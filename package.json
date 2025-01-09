@@ -5,13 +5,14 @@
   "scripts": {
     "start-frontend": "cd frontend && npm run dev",
     "start-backend": "cd backend && npm run dev",
-    "prepare": "husky"
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "prettier": "3.4.2"
   }
 }
