@@ -12,7 +12,6 @@ app.use(morgan('tiny'));
 app.use(express.json());
 
 app.get('/api/v1', (req, res) => {
-  console.log('test');
   res.send('API is running');
 });
 
@@ -20,7 +19,6 @@ const port = process.env.PORT || 5000;
 const mongoUri = process.env.MONGO_URI;
 
 const start = () => {
-  console.log(mongoUri);
   if (!mongoUri) {
     throw new Error(
       'An error occurred while validating the MongoDB URI. Please check your environment variables',
@@ -30,7 +28,7 @@ const start = () => {
   connectDB(mongoUri)
     .then(() => {
       app.listen(port, () => {
-        console.log(`Server is listening on port ${port}`);
+        console.log(`Server is listening on port ${ port }`);
       });
     })
     .catch((err) => {
