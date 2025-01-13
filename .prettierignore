@@ -1,4 +1,4 @@
 *
 
-!frontend/src
-!backend/src
+!frontend/src/**
+!backend/src/**

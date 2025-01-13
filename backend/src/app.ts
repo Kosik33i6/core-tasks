@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import morgan from 'morgan';
 
 import { connectDB } from './db/connect';
+import { errorhandlerMiddleware, notFoundMiddleware } from './middleware';
 
 config();
 
@@ -14,6 +15,9 @@ app.use(express.json());
 app.get('/api/v1', (req, res) => {
   res.send('API is running');
 });
+
+app.use(notFoundMiddleware);
+app.use(errorhandlerMiddleware);
 
 const port = process.env.PORT || 5000;
 const mongoUri = process.env.MONGO_URI;
