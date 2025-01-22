@@ -1,9 +1,7 @@
-import mongoose from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 import { isUrl } from '../utils';
 
-const { Schema } = mongoose;
-
-interface TaskModel {
+interface TaskModel extends Document {
   name: string;
   description: string;
   image: string;
@@ -38,4 +36,4 @@ const TaskSchema = new Schema<TaskModel>({
   },
 });
 
-export const Task = mongoose.model('Task', TaskSchema);
+export const Task = model('Task', TaskSchema);
