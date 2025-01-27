@@ -1,14 +1,8 @@
 import { Schema, model, Document } from 'mongoose';
 import { isUrl } from '../utils';
+import { ITaskModel } from '../types';
 
-interface TaskModel extends Document {
-  name: string;
-  description: string;
-  image: string;
-  repositoryLink: string;
-}
-
-const TaskSchema = new Schema<TaskModel>({
+const TaskSchema = new Schema<ITaskModel>({
   name: {
     type: String,
     trim: true,
