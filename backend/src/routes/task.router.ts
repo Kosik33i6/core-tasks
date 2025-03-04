@@ -1,17 +1,36 @@
+// task.router.ts
 import express from 'express';
-import {
-  getAllTasks,
-  createTask,
-  updateTask,
-  deleteTask,
-  getSingleTask,
-  uploadImage,
-} from '../controllers/task.controller';
+import { TaskController } from '../controllers';
+import { TaskService } from '../services';
 
-const taskRouter = express.Router();
+export class TaskRouter {
+  private readonly router: express.Router;
+  private readonly taskController: TaskController;
 
-taskRouter.route('/').get(getAllTasks).post(createTask);
-taskRouter.route('/:id').get(getSingleTask).patch(updateTask).delete(deleteTask);
-taskRouter.route('/uploadImage').post(uploadImage);
+  constructor() {
+    this.router = express.Router();
+    this.taskController = new TaskController(new TaskService());
+    this.initializeRoutes();
+  }
 
-export { taskRouter };
+  private initializeRoutes(): void {
+    this.router
+      .route('/')
+      .get(this.taskController.getAllTasks)
+      .post(this.taskController.createTask);
+
+    this.router
+      .route('/:id')
+      .get(this.taskController.getSingleTask)
+      .patch(this.taskController.updateTask)
+      .delete(this.taskController.deleteTask);
+
+    this.router
+      .route('/uploadImage')
+      .post(this.taskController.uploadImage);
+  }
+
+  public getRouter(): express.Router {
+    return this.router;
+  }
+}
