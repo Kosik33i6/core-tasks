@@ -6,11 +6,12 @@ import fileUpload from 'express-fileupload';
 
 import { connectDB } from './db/connect';
 import { errorhandlerMiddleware, notFoundMiddleware } from './middleware';
-import { taskRouter } from './routes/task.router';
+import { TaskRouter } from './routes/';
 
 config();
 
 const app = express();
+const taskRouter = new TaskRouter();
 
 app.use(morgan('tiny'));
 app.use(express.json());
@@ -24,7 +25,7 @@ app.get('/api/v1', (req, res) => {
   res.send('API is running');
 });
 
-app.use('/api/v1/tasks', taskRouter);
+app.use('/api/v1/tasks', taskRouter.getRouter());
 
 app.use(notFoundMiddleware);
 app.use(errorhandlerMiddleware);
